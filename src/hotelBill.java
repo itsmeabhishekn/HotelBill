@@ -11,6 +11,14 @@ class consumer{
     static int snacksPrice = 10;
     int totalPrice = 0;
 
+    int teaQt;
+    int coffeQt;
+    int snacksQt;
+
+    String name;
+
+    long phNo;
+
     consumer()
     {
 
@@ -19,7 +27,7 @@ class consumer{
                 "1.Tea \n" +
                 "2.Coffee \n" +
                 "3.Snacks \n" +
-                "4.Back");
+                "4.Generate Bill ");
 
 
 
@@ -29,17 +37,17 @@ class consumer{
             switch (selectedItem){
                 case 1:
                     System.out.println("Enter quantity of Tea:");
-                    int teaQt = reader.nextInt();
+                    teaQt = reader.nextInt();
                     totalPrice += teaPrice*teaQt;
                     break;
                 case 2:
                     System.out.println("Enter quantity of Coffee:");
-                    int coffeQt = reader.nextInt();
+                    coffeQt = reader.nextInt();
                     totalPrice += coffeePrice*coffeQt;
                     break;
                 case 3:
                     System.out.println("Enter quantity of Snacks:");
-                    int snacksQt = reader.nextInt();
+                    snacksQt = reader.nextInt();
                     totalPrice += snacksPrice*snacksQt;
                     break;
                 case 4:
@@ -52,17 +60,14 @@ class consumer{
     }
 
 
-    void generateBill(consumer c1)
-    {
-        System.out.println(c1.totalPrice);
-    }
+
 
 }
 public class hotelBill {
 
     public static void main(String[] args) {
 
-        ArrayList <hotelBill> h1 = new ArrayList<hotelBill>();
+        ArrayList <consumer> consumerArrayList = new ArrayList<consumer>();
 
 
 
@@ -78,12 +83,35 @@ public class hotelBill {
             switch (ch) {
                 case 1:
                     consumer c1 = new consumer();
-                    h1.add(hotelBill c1);
+                    consumerArrayList.add(c1);
 
                 case 2:
-                    c1.generateBill();
+                    Scanner reader = new Scanner(System.in);
+                    System.out.println("Enter your name : ");
+                    consumerArrayList.get(0).name = reader.next();
+                    System.out.println("Enter your phone number ");
+                    consumerArrayList.get(0).phNo = reader.nextLong();
+
+                    System.out.println("----Bill----");
+                    System.out.println("Name : "+ consumerArrayList.get(0).name);
+                    System.out.println("Number : "+consumerArrayList.get(0).phNo);
+                    System.out.println("------------------");
+                    System.out.println("Tea * "+consumerArrayList.get(0).teaQt+" = "+consumer.teaPrice*consumerArrayList.get(0).teaQt);
+                    System.out.println("Tea * "+consumerArrayList.get(0).coffeQt+" = "+consumer.coffeePrice*consumerArrayList.get(0).teaQt);
+                    System.out.println("Tea * "+consumerArrayList.get(0).snacksQt+" = "+consumer.snacksPrice*consumerArrayList.get(0).teaQt);
+                    System.out.println("---------------------");
+                    System.out.println("Total Price = "+consumerArrayList.get(0).totalPrice);
+
+                    //TODO
+                    // idly    *   2==60rs
+                    //poori     *   2==60rs
+                    //Your total bill=120
+                    //Thank you
+
                 case 3:
+                    System.out.println("/n/n"+consumerArrayList.get(0).name+" : "+consumerArrayList.get(0).totalPrice+"/n/n");
                 case 4:
+                    System.exit(0);
 
             }
         }
